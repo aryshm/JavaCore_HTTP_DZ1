@@ -28,5 +28,8 @@ public class Main {
         List<Post> posts = mapper.readValue(response.getEntity().getContent(), new TypeReference<>() {});
         posts.stream().filter(x -> x.getUpvotes() != null && Integer.parseInt(x.getUpvotes()) > 0)
                 .forEach(System.out::println);
+
+        response.close();
+        httpClient.close();
     }
 }
