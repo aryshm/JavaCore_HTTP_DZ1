@@ -25,8 +25,8 @@ public class Main {
 
         HttpGet request = new HttpGet(REMOTE_SERVICE_URI);
         CloseableHttpResponse response = httpClient.execute(request);
-        List<Post> posts = mapper.readValue(response.getEntity().getContent(), new TypeReference<>() {});
-        posts.stream().filter(x -> x.getUpvotes() != null && Integer.parseInt(x.getUpvotes()) > 0)
+        List<CatFacts> catFactsList = mapper.readValue(response.getEntity().getContent(), new TypeReference<>() {});
+        catFactsList.stream().filter(x -> x.getUpvotes() != null && Integer.parseInt(x.getUpvotes()) > 0)
                 .forEach(System.out::println);
 
         response.close();
